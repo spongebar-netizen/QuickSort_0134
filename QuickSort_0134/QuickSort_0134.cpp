@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 int arr[20];
@@ -7,12 +6,10 @@ int cmp_count = 0;
 int mov_count = 0;
 int n;
 
-
 void input() {
 	while (true)
 	{
-
-		cout << "Masukkan element array: ";
+		cout << "Masukkan panjang element array: ";
 		cin >> n;
 
 		if (n <= 20)
@@ -20,18 +17,15 @@ void input() {
 		else
 			cout << "\nMaksimum panjang array adalah 20" << endl;
 	}
-
 	cout << "\n------------------" << endl;
 	cout << "nEnter Array Element" << endl;
 	cout << "--------------------" << endl;
 
 	for (int i = 0; i < n; i++)
-
 	{
 		cout << "<" << (i + 1) << ">";
 		cin >> arr[i];
 	}
-
 }
 
 void swap(int x, int y)
@@ -43,13 +37,14 @@ void swap(int x, int y)
 
 
 }
-
+void q_short(int low, int high)
 {
 	int temp;
 	int pivot, i, j;
 	if (low > high) {
 		return;
 	}
+
 	pivot = arr[low];
 	i = low + 1;
 	j = high;
@@ -66,3 +61,50 @@ void swap(int x, int y)
 		j--;
 		cmp_count++;
 	}
+	cmp_count++;
+	if (i < j)
+	{
+		swap(i, j);
+	}
+	if (low < j) {
+		swap(low, j);
+	}
+
+	q_short(low, j - 1);
+	q_short(j + 1, high);
+
+}
+void display() {
+	cout << "\-----------" << endl;
+	cout << "Sorted array" << endl;
+	cout << "------------" << endl;
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << "\n\nNumber of comparisions: " << cmp_count << endl;
+	cout << "Number of data movements: " << mov_count << endl;
+}
+int main()
+{
+	char ch;
+
+	do {
+		input();
+		q_short(0, n - 1);
+		display();
+		cout << "\nDo you want to continue? (y/n): ";
+		cin >> ch;
+		if (ch == 'n' || ch == 'N')
+			break;
+
+		system("pause");
+		system("cls");
+
+	} while (true);
+
+	return 0;
+
+
+}
