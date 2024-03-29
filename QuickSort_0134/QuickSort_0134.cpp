@@ -62,3 +62,7 @@ void swap(int x, int y)
 	}
 	cmp_count++;
 	while ((arr[i] > pivot) && (j >= low))
+	{
+		j--;
+		cmp_count++;
+	}
