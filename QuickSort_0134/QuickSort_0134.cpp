@@ -50,3 +50,8 @@ void swap(int x, int y)
 	if (low > high) {
 		return;
 	}
+	pivot = arr[low];
+	i = low + 1;
+	j = high;
+
+	while (i <= j)
